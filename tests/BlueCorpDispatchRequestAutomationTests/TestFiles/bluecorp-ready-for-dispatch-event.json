@@ -1,0 +1,40 @@
+{
+  "controlNumber": 101,
+  "salesOrder": "SO123456",
+  "containers": [
+    {
+      "loadId": "LOAD001",
+      "containerType": "20RF",
+      "items": [
+        {
+          "itemCode": "ITEM001",
+          "quantity": 10,
+          "cartonWeight": 2.5
+        },
+        {
+          "itemCode": "ITEM002",
+          "quantity": 5,
+          "cartonWeight": 1.8
+        }
+      ]
+    },
+    {
+      "loadId": "LOAD002",
+      "containerType": "40HC",
+      "items": [
+        {
+          "itemCode": "ITEM003",
+          "quantity": 20,
+          "cartonWeight": 3.0
+        }
+      ]
+    }
+  ],
+  "deliveryAddress": {
+    "street": "986 Fake Street",
+    "city": "Fake City",
+    "state": "Fake State",
+    "postalCode": "12345",
+    "country": "Fake Country"
+  }
+}

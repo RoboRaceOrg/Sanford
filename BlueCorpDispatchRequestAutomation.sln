@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueCorpDispatchRequestAutomationTests", "tests\BlueCorpDispatchRequestAutomationTests\BlueCorpDispatchRequestAutomationTests.csproj", "{7C055DCF-79EE-4AF0-AF0A-4191048541DD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		docs\Azure Functions SRP.md = docs\Azure Functions SRP.md
+		docs\AzureAPIManagement(APIM)SetupforForwardingJSONtoSaveJsonToBlobStore.md = docs\AzureAPIManagement(APIM)SetupforForwardingJSONtoSaveJsonToBlobStore.md
+		AzureStorageContainersBeingUse.md = AzureStorageContainersBeingUse.md
+		docs\AzureStorageContainersBeingUsed.md = docs\AzureStorageContainersBeingUsed.md
+		docs\ConfiguringandRunning`UploadCsvTimerToSftpFunction`.md = docs\ConfiguringandRunning`UploadCsvTimerToSftpFunction`.md
+		ConfiguringandUsing`SftpService`inAzureFunctions.md = ConfiguringandUsing`SftpService`inAzureFunctions.md
+		docs\Environments For Azure Function App Development.md = docs\Environments For Azure Function App Development.md
+		README.md = README.md
+		docs\Recommended Approach for Function App Configurations.md = docs\Recommended Approach for Function App Configurations.md
+		docs\Setting_Up_Environments.md = docs\Setting_Up_Environments.md
+		docs\xUnitTestCasesSummary.md = docs\xUnitTestCasesSummary.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueCorpDispatchAuto", "BlueCorpDispatchAuto\BlueCorpDispatchAuto.csproj", "{16B5D574-B3ED-43BA-8BA7-E3DEC8D8DDC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C055DCF-79EE-4AF0-AF0A-4191048541DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C055DCF-79EE-4AF0-AF0A-4191048541DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C055DCF-79EE-4AF0-AF0A-4191048541DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C055DCF-79EE-4AF0-AF0A-4191048541DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16B5D574-B3ED-43BA-8BA7-E3DEC8D8DDC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16B5D574-B3ED-43BA-8BA7-E3DEC8D8DDC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16B5D574-B3ED-43BA-8BA7-E3DEC8D8DDC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16B5D574-B3ED-43BA-8BA7-E3DEC8D8DDC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C99F28F-05F6-4DF1-9D5D-A44547406410}
+	EndGlobalSection
+EndGlobal
