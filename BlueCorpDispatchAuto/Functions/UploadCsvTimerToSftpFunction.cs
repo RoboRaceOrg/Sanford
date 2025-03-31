@@ -9,6 +9,7 @@ namespace BlueCorpDispatchAuto
 {
     public class UploadCsvTimerToSftpFunction
     {
+        private readonly ILogger<UploadCsvTimerToSftpFunction> _logger;
         private readonly ISftpService _sftpService;
         private readonly IQueueService _queueService;
         private readonly string _archiveCsvContainer;
@@ -17,8 +18,9 @@ namespace BlueCorpDispatchAuto
         private readonly string _failedFolder = "bluecorp-failed";
         private readonly BlobServiceClient _blobServiceClient; // Inject BlobServiceClient
 
-        public UploadCsvTimerToSftpFunction(ISftpService sftpService, IQueueService queueService, BlobServiceClient blobServiceClient)
+        public UploadCsvTimerToSftpFunction(ILogger<UploadCsvTimerToSftpFunction> logger, ISftpService sftpService, IQueueService queueService, BlobServiceClient blobServiceClient)
         {
+            _logger = logger;
             _sftpService = sftpService;
             _queueService = queueService;
             _archiveCsvContainer = "dispatch-archive";
@@ -26,12 +28,12 @@ namespace BlueCorpDispatchAuto
         }
 
         [Function("UploadCsvTimerToSftp")]
-        public async Task RunAsync([TimerTrigger("%SFTP_TIMER_SCHEDULE%")] TimerInfo myTimer, ILogger log)
+        public async Task RunAsync([TimerTrigger("%SFTP_TIMER_SCHEDULE%")] TimerInfo myTimer)
         {
             DateTime currentTimeUtc = DateTime.UtcNow; // Get current UTC time
             DateTime currentTimeLocal = TimeZoneInfo.ConvertTimeFromUtc(currentTimeUtc, TimeZoneInfo.Local); // Convert to local time
 
-            log.LogInformation($"Executing scheduled SFTP upload process at {currentTimeLocal:HH:mm:ss} (Local Time).");
+            _logger.LogInformation($"Executing scheduled SFTP upload process at {currentTimeLocal:HH:mm:ss} (Local Time).");
 
             while (true)
             {
@@ -46,7 +48,7 @@ namespace BlueCorpDispatchAuto
                 if (await _sftpService.FileExistsAsync($"{_processedFolder}/{fileName}") ||
                     await _sftpService.FileExistsAsync($"{_failedFolder}/{fileName}"))
                 {
-                    log.LogWarning($"File {fileName} already exists in processed or failed folder. Skipping and dequeuing.");
+                    _logger.LogWarning($"File {fileName} already exists in processed or failed folder. Skipping and dequeuing.");
                     await _queueService.DequeueMessageAsync(_queueName, fileName);
                     continue;
                 }
@@ -56,12 +58,12 @@ namespace BlueCorpDispatchAuto
                     // Upload file to SFTP
                     await _sftpService.UploadFileAsync(fileName, csvData);
                     await MoveToArchiveAsync(fileName, csvData);
-                    log.LogInformation($"File {fileName} successfully uploaded and archived.");
+                    _logger.LogInformation($"File {fileName} successfully uploaded and archived.");
                     await _queueService.DequeueMessageAsync(_queueName, fileName);
                 }
                 catch (Exception ex)
                 {
-                    log.LogError($"Error processing {fileName}: {ex.Message}");
+                    _logger.LogError($"Error processing {fileName}: {ex.Message}");
                 }
             }
         }
