@@ -153,6 +153,8 @@ This approach ensures that **all SFTP requests originate from a consistent, whit
 
 [Azure Storage Containers Being Used](docs/AzureStorageContainersBeingUsed.md)
 
+[Why My Azure Functions Project Skips Azure Key Vault](docs/WhyMyAzureFunctionsProjectSkipsAzureKeyVault.md)
+
 ---
 ## **To Do**
 - Create build pipelines for Azure deployment
