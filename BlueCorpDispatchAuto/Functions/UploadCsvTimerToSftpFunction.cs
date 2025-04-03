@@ -42,7 +42,7 @@ namespace BlueCorpDispatchAuto
                     break; // No more messages in the queue
 
                 string fileName = message.Name;
-                string? csvData = await _queueService.RetrieveMessageAsync(_queueName,fileName);
+                string? csvData = await _queueService.RetrieveMessageAsync(_queueName, fileName);
 
                 // Check if file already exists in processed or failed folder
                 if (await _sftpService.FileExistsAsync($"{_processedFolder}/{fileName}") ||

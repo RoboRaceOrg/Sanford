@@ -59,6 +59,8 @@ builder.Services.AddTransient<IBlobStorageService, BlobStorageService>();
 
 await CreateBlobContainers(builder);
 
+PreFlightCheck();
+
 builder.Build().Run();
 
 
@@ -94,4 +96,18 @@ async Task CreateBlobContainers(FunctionsApplicationBuilder builder)
     {
         logger.LogError($"Error creating Blob containers: {ex.Message}");
     }
+}
+
+void  PreFlightCheck()
+{
+    // List of required environment variables
+    var requiredVariables = new List<string> { "SftpSettings:PrivateKeyPath", "AzureWebJobsStorage", "FUNCTIONS_WORKER_RUNTIME", "SftpSettings:Host", 
+        "SftpSettings:Username", "SftpSettings:RemoteFolder" };
+
+    // Call the reusable method
+    var result = EnvironmentVariableChecker.CheckEnvironmentVariables(requiredVariables);
+
+    // Display the result
+    Console.WriteLine($"Status: {result.Status}");
+    Console.WriteLine($"Message: {result.Message}");
 }
